@@ -1,18 +1,19 @@
+// routes/payment.js
 const express = require('express');
-const Payment = require('../models/Payment');
+const {
+	recordPayment,
+	getPayments,
+	getPaymentById,
+	updatePayment,
+	deletePayment,
+} = require('../controllers/paymentController');
 const router = express.Router();
 
-// Add payment
-router.post('/', async (req, res) => {
-	const payment = new Payment(req.body);
-	await payment.save();
-	res.status(201).send(payment);
-});
-
-// Get all payments
-router.get('/', async (req, res) => {
-	const payments = await Payment.find().populate('tenant');
-	res.send(payments);
-});
+// CRUD Routes
+router.post('/', recordPayment);
+router.get('/', getPayments);
+router.get('/:id', getPaymentById);
+router.put('/:id', updatePayment);
+router.delete('/:id', deletePayment);
 
 module.exports = router;

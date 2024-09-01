@@ -1,18 +1,18 @@
 const express = require('express');
-const Property = require('../models/Property');
+const {
+  addProperty,
+  getProperties,
+  getPropertyById,
+  updateProperty,
+  deleteProperty,
+} = require('../controllers/propertyController');
 const router = express.Router();
 
-// Add property
-router.post('/', async (req, res) => {
-  const property = new Property(req.body);
-  await property.save();
-  res.status(201).send(property);
-});
-
-// Get all properties
-router.get('/', async (req, res) => {
-  const properties = await Property.find();
-  res.send(properties);
-});
+// CRUD Routes
+router.post('/', addProperty);
+router.get('/', getProperties);
+router.get('/:id', getPropertyById);
+router.put('/:id', updateProperty);
+router.delete('/:id', deleteProperty);
 
 module.exports = router;

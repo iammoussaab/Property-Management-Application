@@ -1,18 +1,19 @@
+// routes/tenant.js
 const express = require('express');
-const Tenant = require('../models/Tenant');
+const {
+  addTenant,
+  getTenants,
+  getTenantById,
+  updateTenant,
+  deleteTenant,
+} = require('../controllers/tenantController');
 const router = express.Router();
 
-// Add tenant
-router.post('/', async (req, res) => {
-  const tenant = new Tenant(req.body);
-  await tenant.save();
-  res.status(201).send(tenant);
-});
-
-// Get all tenants
-router.get('/', async (req, res) => {
-  const tenants = await Tenant.find().populate('property');
-  res.send(tenants);
-});
+// CRUD Routes
+router.post('/', addTenant);
+router.get('/', getTenants);
+router.get('/:id', getTenantById);
+router.put('/:id', updateTenant);
+router.delete('/:id', deleteTenant);
 
 module.exports = router;
