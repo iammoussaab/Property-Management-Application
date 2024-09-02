@@ -1,4 +1,3 @@
-// controllers/paymentController.js
 const Payment = require('../models/Payment');
 const Tenant = require('../models/Tenant');
 
@@ -7,12 +6,10 @@ exports.recordPayment = async (req, res, next) => {
   try {
     const { tenant, date, amount, settled } = req.body;
 
-    // Validation
     if (!tenant || !date || !amount || settled === undefined) {
       return res.status(400).json({ success: false, message: 'All fields are required.' });
     }
 
-    // Check if tenant exists
     const existingTenant = await Tenant.findById(tenant);
     if (!existingTenant) {
       return res.status(404).json({ success: false, message: 'Tenant not found.' });
@@ -60,7 +57,6 @@ exports.updatePayment = async (req, res, next) => {
   try {
     const updates = req.body;
 
-    // If tenant is being updated, verify it exists
     if (updates.tenant) {
       const existingTenant = await Tenant.findById(updates.tenant);
       if (!existingTenant) {

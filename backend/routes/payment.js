@@ -1,4 +1,3 @@
-// routes/payment.js
 const express = require('express');
 const {
 	recordPayment,

@@ -1,4 +1,3 @@
-// controllers/propertyController.js
 const Property = require("../models/Property");
 
 // Add a new property

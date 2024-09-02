@@ -1,4 +1,3 @@
-// models/Tenant.js
 const mongoose = require("mongoose");
 
 const tenantSchema = new mongoose.Schema({

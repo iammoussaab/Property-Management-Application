@@ -1,18 +1,14 @@
-// controllers/tenantController.js
 const Tenant = require('../models/Tenant');
 const Property = require('../models/Property');
 
-// Add a new tenant
 exports.addTenant = async (req, res, next) => {
   try {
     const { name, contactDetails, section, property } = req.body;
 
-    // Validation
     if (!name || !contactDetails || !section || !property) {
       return res.status(400).json({ success: false, message: 'All fields are required.' });
     }
 
-    // Check if property exists
     const existingProperty = await Property.findById(property);
     if (!existingProperty) {
       return res.status(404).json({ success: false, message: 'Property not found.' });
@@ -26,7 +22,6 @@ exports.addTenant = async (req, res, next) => {
   }
 };
 
-// Get all tenants with property details
 exports.getTenants = async (req, res, next) => {
   try {
     const tenants = await Tenant.find().populate('property');
@@ -36,7 +31,6 @@ exports.getTenants = async (req, res, next) => {
   }
 };
 
-// Get a single tenant by ID
 exports.getTenantById = async (req, res, next) => {
   try {
     const tenant = await Tenant.findById(req.params.id).populate('property');
@@ -49,12 +43,10 @@ exports.getTenantById = async (req, res, next) => {
   }
 };
 
-// Update a tenant
 exports.updateTenant = async (req, res, next) => {
   try {
     const updates = req.body;
 
-    // If property is being updated, verify it exists
     if (updates.property) {
       const existingProperty = await Property.findById(updates.property);
       if (!existingProperty) {
@@ -77,7 +69,6 @@ exports.updateTenant = async (req, res, next) => {
   }
 };
 
-// Delete a tenant
 exports.deleteTenant = async (req, res, next) => {
   try {
     const tenant = await Tenant.findByIdAndDelete(req.params.id);

@@ -32,8 +32,8 @@ mongoose
 // Apply authentication middleware to all routes
 app.use("/api/auth", authRoutes); // Add authentication routes
 app.use("/api/properties", propertyRoutes);
-app.use("/api/tenants", auth, tenantRoutes);
-app.use("/api/payments", auth, paymentRoutes);
+app.use("/api/tenants", tenantRoutes);
+app.use("/api/payments", paymentRoutes);
 
 // Use error handler middleware
 app.use(errorHandler);

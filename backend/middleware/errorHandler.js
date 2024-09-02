@@ -1,8 +1,6 @@
-// middleware/errorHandler.js
 const errorHandler = (err, req, res, next) => {
 	console.error(err.stack);
 
-	// Set default status code and message
 	let statusCode = 500;
 	let message = 'Internal Server Error';
 
@@ -12,7 +10,6 @@ const errorHandler = (err, req, res, next) => {
 	  message = err.message;
 	}
 
-	// Handle Mongoose bad ObjectId
 	if (err.name === 'CastError') {
 	  statusCode = 400;
 	  message = 'Resource not found.';

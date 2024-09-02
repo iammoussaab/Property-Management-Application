@@ -1,4 +1,3 @@
-// routes/tenant.js
 const express = require('express');
 const {
   addTenant,
