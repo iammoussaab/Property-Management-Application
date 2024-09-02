@@ -1,0 +1,14 @@
+html, body {
+	height: 100%;
+	margin: 0;
+  }
+
+  .app {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh; /* Full viewport height */
+  }
+
+  main {
+	flex: 1; /* Makes sure the main content area expands to fill available space */
+  }

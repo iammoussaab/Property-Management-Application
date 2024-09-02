@@ -1,0 +1,44 @@
+.footer {
+	background-color: #003366;
+	/* Darker Blue */
+	color: white;
+	padding: 20px;
+	text-align: center;
+	position: relative;
+	/* Ensures footer is positioned relative to its parent */
+}
+
+.footer-content {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.footer-links {
+	list-style: none;
+	padding: 0;
+	margin: 10px 0 0;
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
+.footer-links li {
+	display: inline;
+}
+
+.footer-links a {
+	color: white;
+	text-decoration: none;
+}
+
+.footer-links a:hover {
+	text-decoration: underline;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+	.footer-links {
+		flex-direction: column;
+		gap: 10px;
+	}
+}

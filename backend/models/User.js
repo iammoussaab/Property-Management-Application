@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  username: {
+    type: String,
+    required: false, // Make it optional if not always needed
+  },
 });
 
 // Hash password before saving
