@@ -12,11 +12,10 @@ const userSchema = new mongoose.Schema({
   },
   username: {
     type: String,
-    required: false, // Make it optional if not always needed
+    required: false,
   },
 });
 
-// Hash password before saving
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
