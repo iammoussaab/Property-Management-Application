@@ -2,15 +2,52 @@ import axios from "axios";
 
 const API_URL = "http://localhost:5000/api/payments";
 
-const getPayments = () => axios.get(API_URL);
+const getToken = () => localStorage.getItem("token");
 
-const getPaymentById = (id) => axios.get(`${API_URL}/${id}`);
+const getPayments = () => {
+  const token = getToken();
+  return axios.get(API_URL, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
 
-const addPayment = (payment) => axios.post(API_URL, payment);
+const getPaymentById = (id) => {
+  const token = getToken();
+  return axios.get(`${API_URL}/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
 
-const updatePayment = (id, payment) => axios.put(`${API_URL}/${id}`, payment);
+const addPayment = (payment) => {
+  const token = getToken();
+  return axios.post(API_URL, payment, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
 
-const deletePayment = (id) => axios.delete(`${API_URL}/${id}`);
+const updatePayment = (id, payment) => {
+  const token = getToken();
+  return axios.put(`${API_URL}/${id}`, payment, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+const deletePayment = (id) => {
+  const token = getToken();
+  return axios.delete(`${API_URL}/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
 
 const paymentService = {
   getPayments,

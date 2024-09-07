@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import propertyService from "../services/propertyService";
 import "../styles/PropertyList.css"; // Import CSS for styling
 
 const PropertyList = () => {
   const [properties, setProperties] = useState([]);
+  const navigate = useNavigate();
 
   const handleDelete = async (id) => {
     try {
@@ -15,13 +16,22 @@ const PropertyList = () => {
       console.error("Error deleting property:", error);
     }
   };
+
   useEffect(() => {
     const fetchProperties = async () => {
-      const { data } = await propertyService.getProperties();
-      setProperties(data.data);
+      try {
+        const { data } = await propertyService.getProperties();
+        setProperties(data.data);
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          navigate("/auth"); // Redirect to login page
+        } else {
+          console.error("Error fetching properties:", error);
+        }
+      }
     };
     fetchProperties();
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="property-list">

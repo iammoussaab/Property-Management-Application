@@ -16,7 +16,6 @@ app.use(cors());
 
 const PORT = process.env.PORT || 5000;
 
-// Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -28,11 +27,9 @@ mongoose
   })
   .catch((err) => console.log("Failed to connect to MongoDB:", err));
 
-// Apply authentication middleware to all routes
-app.use("/api/auth", authRoutes); // Add authentication routes
+app.use("/api/auth", authRoutes);
 app.use("/api/properties", auth, propertyRoutes);
 app.use("/api/tenants", auth, tenantRoutes);
 app.use("/api/payments", auth, paymentRoutes);
 
-// Use error handler middleware
 app.use(errorHandler);

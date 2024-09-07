@@ -1,25 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import tenantService from "../services/tenantService";
 import "../styles/TenantList.css"; // Import CSS for styling
 
 const TenantList = () => {
   const [tenants, setTenants] = useState([]);
+  const navigate = useNavigate();
+
+  const handleDelete = async (id) => {
+    try {
+      await tenantService.deleteTenant(id);
+      setTenants(tenants.filter((tenant) => tenant._id !== id));
+      console.log("Tenant deleted successfully");
+    } catch (error) {
+      console.error("Error deleting tenant:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchTenants = async () => {
-      const { data } = await tenantService.getTenants();
-      setTenants(data.data);
+      try {
+        const { data } = await tenantService.getTenants();
+        setTenants(data.data);
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          navigate("/auth"); // Redirect to login page
+        } else {
+          console.error("Error fetching tenants:", error);
+        }
+      }
     };
     fetchTenants();
-  }, []);
-
-  const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this tenant?")) {
-      await tenantService.deleteTenant(id);
-      setTenants(tenants.filter((tenant) => tenant._id !== id));
-    }
-  };
+  }, [navigate]);
 
   return (
     <div className="tenant-list">
@@ -32,7 +44,7 @@ const TenantList = () => {
           tenants.map((tenant) => (
             <li key={tenant._id} className="tenant-item">
               <span className="tenant-details">
-                {tenant.name} - {tenant.section}
+                {tenant.name} - {tenant.email} - {tenant.phone}
               </span>
               <div className="tenant-actions">
                 <Link to={`/tenants/${tenant._id}/edit`} className="edit-link">
@@ -47,7 +59,6 @@ const TenantList = () => {
               </div>
             </li>
           ))}
-        ;
       </ul>
     </div>
   );

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import authService from "../services/authService";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/Auth.css"; // Import CSS for styling
+import authService from "../services/authService";
+import { AuthContext } from "../AuthContext";
+import "../styles/Auth.css";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -10,27 +11,26 @@ const Auth = () => {
     password: "",
     username: "",
   });
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setCredentials({
-      ...credentials,
-      [e.target.name]: e.target.value,
-    });
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting credentials:", credentials);
     try {
       if (isLogin) {
         await authService.login(credentials);
+        login();
+        navigate("/");
       } else {
         await authService.register(credentials);
+        setIsLogin(true);
       }
-      navigate("/");
     } catch (error) {
-      console.error("Error during authentication:", error);
+      console.error("Authentication error:", error);
     }
   };
 
