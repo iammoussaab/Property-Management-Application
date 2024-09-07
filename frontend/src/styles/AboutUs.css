@@ -1,0 +1,49 @@
+.aboutus-container {
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+	color: #333;
+	line-height: 1.6;
+}
+
+.hero-section {
+	background-color: #003366;
+	/* Darker Blue */
+	color: white;
+	text-align: center;
+	padding: 60px 20px;
+	border-bottom: 4px solid #0066cc;
+	/* Bright Blue */
+}
+
+.hero-section h1 {
+	font-size: 2.8em;
+	margin-bottom: 15px;
+}
+
+.hero-section p {
+	font-size: 1.4em;
+	margin-bottom: 25px;
+}
+
+.aboutus-content {
+	padding: 40px 20px;
+	margin: 0 auto;
+	max-width: 1200px;
+}
+
+.aboutus-item {
+	margin-bottom: 40px;
+}
+
+.aboutus-item h2 {
+	color: #003366;
+	/* Darker Blue */
+	font-size: 2em;
+	margin-bottom: 20px;
+	border-bottom: 2px solid #004080;
+	/* Slightly Darker Blue */
+	padding-bottom: 10px;
+}
+
+.aboutus-item p {
+	font-size: 1.1em;
+}

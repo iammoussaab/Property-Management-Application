@@ -13,6 +13,8 @@ import Footer from "./components/Footer";
 import PropertyEditPage from "./components/PropertyEditPage";
 import PaymentEditPage from "./components/PaymentEditPage";
 import TenantEditPage from "./components/TenantEditPage";
+import Services from "./pages/Services";
+import AboutUs from "./pages/AboutUs";
 const App = () => (
   <Router>
     <Navbar />
@@ -28,6 +30,8 @@ const App = () => (
       <Route path="/payments/new" element={<PaymentForm />} />
       <Route path="/payments/:id/edit" element={<PaymentEditPage />} />
       <Route path="/auth" element={<Auth />} />
+      <Route path="/services" element={<Services />} />
+      <Route path="/about" element={<AboutUs />} />
     </Routes>
     <Footer />
   </Router>
