@@ -84,7 +84,7 @@ const TenantForm = ({ tenant }) => {
           : null}
       </select>
       <button type="submit" className="form-button">
-        Save
+        {tenant ? "Update Tenants" : "Add Property"}
       </button>
     </form>
   );

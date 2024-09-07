@@ -1,31 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import propertyService from "../services/propertyService";
 import "../styles/PropertyForm.css"; // Import CSS for styling
 
 const PropertyForm = ({ property }) => {
-  const [formData, setFormData] = useState(
-    property || {
-      name: "",
-      address: "",
-      type: "",
-      units: 0,
-      rentalCost: 0,
-    }
-  );
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+    type: "",
+    units: 0,
+    rentalCost: 0,
+  });
   const navigate = useNavigate();
 
+  useEffect(() => {
+    console.log("Property prop:", property);
+    if (property) {
+      setFormData({
+        name: property.data.name || "",
+        address: property.data.address || "",
+        type: property.data.type || "",
+        units: property.data.units || 0,
+        rentalCost: property.data.rentalCost || 0,
+      });
+    } else {
+      setFormData({
+        name: "",
+        address: "",
+        type: "",
+        units: 0,
+        rentalCost: 0,
+      });
+    }
+  }, [property]);
+
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (property) {
+      if (property && property._id) {
         await propertyService.updateProperty(property._id, formData);
       } else {
         await propertyService.addProperty(formData);
@@ -38,6 +58,8 @@ const PropertyForm = ({ property }) => {
       );
     }
   };
+
+  console.log("FormData:", formData);
 
   return (
     <form onSubmit={handleSubmit} className="property-form">
@@ -78,6 +100,7 @@ const PropertyForm = ({ property }) => {
         placeholder="Units"
         required
         className="form-input"
+        min="1"
       />
       <input
         name="rentalCost"
@@ -87,9 +110,10 @@ const PropertyForm = ({ property }) => {
         placeholder="Rental Cost"
         required
         className="form-input"
+        min="0"
       />
       <button type="submit" className="form-button">
-        Save
+        {property ? "Update Property" : "Add Property"}
       </button>
     </form>
   );

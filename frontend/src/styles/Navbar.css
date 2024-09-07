@@ -17,7 +17,7 @@
 .navbar-logo {
 	font-size: 1.5em;
 	font-weight: bold;
-	margin-right: 15cm;
+	margin-right: 15px; /* Adjusted to 15px */
 }
 
 .navbar-logo a {
@@ -44,6 +44,20 @@
 }
 
 .navbar-link:hover {
+	color: #66ccff;
+}
+
+/* Button styles to match navbar link appearance */
+.navbar-button {
+	background: none;
+	border: none;
+	color: white;
+	font-size: 1.1em;
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.navbar-button:hover {
 	color: #66ccff;
 }
 

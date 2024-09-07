@@ -10,6 +10,9 @@ import PropertyForm from "./components/PropertyForm";
 import TenantForm from "./components/TenantForm";
 import PaymentForm from "./components/PaymentForm";
 import Footer from "./components/Footer";
+import PropertyEditPage from "./components/PropertyEditPage";
+import PaymentEditPage from "./components/PaymentEditPage";
+import TenantEditPage from "./components/TenantEditPage";
 const App = () => (
   <Router>
     <Navbar />
@@ -17,13 +20,13 @@ const App = () => (
       <Route path="/" element={<Home />} />
       <Route path="/properties" element={<Properties />} />
       <Route path="/properties/new" element={<PropertyForm />} />
-      <Route path="/properties/:id/edit" element={<PropertyForm />} />
+      <Route path="/properties/:id/edit" element={<PropertyEditPage />} />
       <Route path="/tenants" element={<Tenants />} />
       <Route path="/tenants/new" element={<TenantForm />} />
-      <Route path="/tenants/:id/edit" element={<TenantForm />} />
+      <Route path="/tenants/:id/edit" element={<TenantEditPage />} />
       <Route path="/payments" element={<Payments />} />
       <Route path="/payments/new" element={<PaymentForm />} />
-      <Route path="/payments/:id/edit" element={<PaymentForm />} />
+      <Route path="/payments/:id/edit" element={<PaymentEditPage />} />
       <Route path="/auth" element={<Auth />} />
     </Routes>
     <Footer />

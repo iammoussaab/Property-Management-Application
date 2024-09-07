@@ -96,7 +96,7 @@ const PaymentForm = ({ payment }) => {
         />
       </label>
       <button type="submit" className="form-button">
-        Save
+        {payment ? "Update Payments" : "Add Property"}
       </button>
     </form>
   );
