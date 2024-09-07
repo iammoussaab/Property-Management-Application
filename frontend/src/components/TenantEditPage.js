@@ -4,9 +4,9 @@ import TenantForm from "./TenantForm";
 import tenantService from "../services/tenantService";
 
 const TenantEditPage = () => {
-  const { id } = useParams(); // Extract tenant ID from URL
+  const { id } = useParams(); 
   const [tenant, setTenant] = useState(null);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTenant = async () => {

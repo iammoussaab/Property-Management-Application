@@ -4,9 +4,9 @@ import PropertyForm from "./PropertyForm";
 import propertyService from "../services/propertyService";
 
 const PropertyEditPage = () => {
-  const { id } = useParams(); // Extract property ID from URL
+  const { id } = useParams();
   const [property, setProperty] = useState(null);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchProperty = async () => {

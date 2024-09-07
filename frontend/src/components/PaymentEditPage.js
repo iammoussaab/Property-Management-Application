@@ -4,9 +4,9 @@ import PaymentForm from "./PaymentForm";
 import paymentService from "../services/paymentService";
 
 const PaymentEditPage = () => {
-  const { id } = useParams(); // Extract payment ID from URL
+  const { id } = useParams();
   const [payment, setPayment] = useState(null);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchPayment = async () => {
