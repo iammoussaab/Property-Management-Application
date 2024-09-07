@@ -15,6 +15,9 @@ import PaymentEditPage from "./components/PaymentEditPage";
 import TenantEditPage from "./components/TenantEditPage";
 import Services from "./pages/Services";
 import AboutUs from "./pages/AboutUs";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import ContactUs from "./pages/ContactUs";
 const App = () => (
   <Router>
     <Navbar />
@@ -32,6 +35,9 @@ const App = () => (
       <Route path="/auth" element={<Auth />} />
       <Route path="/services" element={<Services />} />
       <Route path="/about" element={<AboutUs />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/terms-of-service" element={<TermsOfService />} />
+      <Route path="/contact" element={<ContactUs />} />
     </Routes>
     <Footer />
   </Router>
